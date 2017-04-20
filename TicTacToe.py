@@ -12,11 +12,31 @@ def menu():
     option = input("Please select one: ")
 
     if option == 1:
-        onLoad()
+        showBoard()
+        player = random.randint(1, 2)
+        if player == 1:
+            playerOneInput()
+        else:
+            playerTwoInput()
     elif option == 2:
-        checkScore()
+        fileName = "Wins.txt"
+        file = open(fileName)
+        score = file.read()
+        print(score)
+        file.close()
+
+        raw_input("Press ENTER to return to the MENU. ")
+        menu()
     elif option == 3:
-        onQuit()
+
+        choice = raw_input("Are you sure you want to EXIT the game? Yes/No:  ")
+
+        if choice.upper() == "yes".upper():
+            quit()
+        elif choice.upper() == "no".upper():
+            menu()
+        else:
+            print("Please pick a valid option. ")
     else:
         menu()
 
@@ -26,10 +46,10 @@ def showBoard():
     print(interface[7]), (interface[8]), (interface[9])
 
 def playerOneInput():
-    playerOne = input("Player ONE pick an area. You are 'x'. ")
+    playerOne = input("Player ONE pick an area. You are 'X'. ")
     playerOne = int(playerOne)
-    while interface[playerOne] != 'x' and interface[playerOne] != 'o':
-        interface[playerOne] = 'x'
+    while interface[playerOne] != 'X' and interface[playerOne] != 'O':
+        interface[playerOne] = 'X'
         checkBoard()
         showBoard()
         playerTwoInput()
@@ -39,10 +59,10 @@ def playerOneInput():
         playerOneInput()
 
 def playerTwoInput():
-    playerTwo = input("Player TWO pick an area. You are 'o'. ")
+    playerTwo = input("Player TWO pick an area. You are 'O'. ")
     playerTwo = int(playerTwo)
-    while interface[playerTwo] != 'x' and interface[playerTwo] != 'o':
-        interface[playerTwo] = 'o'
+    while interface[playerTwo] != 'X' and interface[playerTwo] != 'O':
+        interface[playerTwo] = 'O'
         checkBoard()
         showBoard()
         playerOneInput()
@@ -53,47 +73,47 @@ def playerTwoInput():
 
 def checkBoard():
     #Horizontal x
-    if interface[1] == 'x' and interface[2] == 'x' and interface[3] == 'x':
+    if interface[1] == 'X' and interface[2] == 'X' and interface[3] == 'X':
         xWin()
-    elif interface[4] == 'x' and interface[5] == 'x' and interface[6] == 'x':
+    elif interface[4] == 'X' and interface[5] == 'X' and interface[6] == 'X':
         xWin()
-    elif interface[7] == 'x' and interface[8] == 'x' and interface[9] == 'x':
+    elif interface[7] == 'X' and interface[8] == 'X' and interface[9] == 'X':
         xWin()
 
     #Vertical x
-    elif interface[1] == 'x' and interface[4] == 'x' and interface[7] == 'x':
+    elif interface[1] == 'X' and interface[4] == 'X' and interface[7] == 'X':
         xWin()
-    elif interface[2] == 'x' and interface[5] == 'x' and interface[8] == 'x':
+    elif interface[2] == 'X' and interface[5] == 'X' and interface[8] == 'X':
         xWin()
-    elif interface[3] == 'x' and interface[6] == 'x' and interface[9] == 'x':
+    elif interface[3] == 'X' and interface[6] == 'X' and interface[9] == 'X':
         xWin()
 
     #Diagnal x
-    elif interface[1] == 'x' and interface[5] == 'x' and interface[9] == 'x':
+    elif interface[1] == 'X' and interface[5] == 'x' and interface[9] == 'X':
         xWin()
-    elif interface[7] == 'x' and interface[5] == 'x' and interface[3] == 'x':
+    elif interface[7] == 'X' and interface[5] == 'x' and interface[3] == 'X':
         xWin()
 
     #Horizontal o
-    elif interface[1] == 'o' and interface[2] == 'o' and interface[3] == 'o':
+    elif interface[1] == 'O' and interface[2] == 'O' and interface[3] == 'O':
         oWin()
-    elif interface[4] == 'o' and interface[5] == 'o' and interface[6] == 'o':
+    elif interface[4] == 'O' and interface[5] == 'O' and interface[6] == 'O':
         oWin()
-    elif interface[7] == 'o' and interface[8] == 'o' and interface[9] == 'o':
+    elif interface[7] == 'O' and interface[8] == 'O' and interface[9] == 'O':
         oWin()
 
     #Vertical o
-    elif interface[1] == 'o' and interface[4] == 'o' and interface[7] == 'o':
+    elif interface[1] == 'O' and interface[4] == 'O' and interface[7] == 'O':
         oWin()
-    elif interface[2] == 'o' and interface[5] == 'o' and interface[8] == 'o':
+    elif interface[2] == 'O' and interface[5] == 'O' and interface[8] == 'O':
         oWin()
-    elif interface[3] == 'o' and interface[6] == 'o' and interface[9] == 'o':
+    elif interface[3] == 'O' and interface[6] == 'O' and interface[9] == 'O':
         oWin()
 
     #Diagnal o
-    elif interface[1] == 'o' and interface[5] == 'o' and interface[9] == 'o':
+    elif interface[1] == 'O' and interface[5] == 'O' and interface[9] == 'o':
         oWin()
-    elif interface[7] == 'o' and interface[5] == 'o' and interface[3] == 'o':
+    elif interface[7] == 'O' and interface[5] == 'O' and interface[3] == 'o':
         oWin()
 
     #Draw
@@ -120,10 +140,10 @@ def oWin():
 
 def gameDraw():
     showBoard()
-    raw_input("The game is a DRAW!! Press ENTER to continue. ")
+    raw_input("The game is a DRAW! Press ENTER to continue. ")
     fileName = "Wins.txt"
     file = open(fileName, 'a')
-    file.writelines("GAME DRAW!! \n")
+    file.writelines("The game was a DRAW! \n")
     file.close()
     resetGame()
 
@@ -131,42 +151,6 @@ def resetGame():
     global interface
     interface = range(0, 10)
     menu()
-
-def checkScore():
-    fileName = "Wins.txt"
-    file = open(fileName)
-    score = file.read()
-    print(score)
-    file.close()
-
-    raw_input("Press ENTER to return to the MENU. ")
-    menu()
-
-def onLoad():
-    showBoard()
-    player = random.randint(1,2)
-    if player == 1:
-        playerOneInput()
-    else:
-        playerTwoInput()
-
-def onQuit():
-   #Range of YES inputs that close the game
-   inputYes = ['Yes','yes','Y','y']
-   #Range of NO inputs that close the game
-   inputNo = ['No','no','N','n']
-   #Prints out insturctions for the user
-   print("Use", inputYes , "QUIT.")
-   print("Use", inputNo , "to go back to the MENU.")
-   #Gets the users input and makes a choice based on it
-   choice = raw_input("Are you sure you want to EXIT the game? ")
-   if choice in inputYes:
-            quit()
-   elif choice in inputNo:
-       menu()
-   else:
-       print("Please pick a valid option. ")
-       onQuit()
 
 #Runs the menu
 menu()
