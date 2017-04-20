@@ -1,1 +1,17 @@
+KNOWN ISSUES. When pressing the enter key on a variety of input screens without a value the game crashed.
 
+20/04/2017.
+Removed some unneeded functions
+Adjusted the code for the menu.
+Fixed various typo's and printing errors.
+
+To-do:
+Reduce the amount of code.
+Fix known issues.
+Support a bot.
+Support basic AI.
+Allow players to set their name.
+Redesign the TicTacToe board.
+Add a score counter to the Wins.txt document that updates.
+Add the ability to reset the Wins.txt document from the menu.
+Add instructions.
