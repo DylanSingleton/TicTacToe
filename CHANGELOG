@@ -1,13 +1,17 @@
-KNOWN ISSUES. When pressing the enter key on a variety of input screens without a value the game crashed.
+KNOWN ISSUES:
 
 20/04/2017.
 Removed some unneeded functions
 Adjusted the code for the menu.
 Fixed various typo's and printing errors.
 
+21/04/2017
+Cleaned up the menu screen.
+Added validation rules to the menu choices.
+Fixed an issue where pressing enter or using a string during either players turn would crash the game.
+
 To-do:
 Reduce the amount of code.
-Fix known issues.
 Support a bot.
 Support basic AI.
 Allow players to set their name.
