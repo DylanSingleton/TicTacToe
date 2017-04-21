@@ -3,22 +3,17 @@ import random
 interface = range(0,10)
 
 def menu():
-    print("--------------------------------------------------------------------------------")
-    print("            Welcome to my TicTacToe game. Created by Dylan Singleton            ")
-    print("--------------------------------------------------------------------------------")
-    print("Press 1: to START GAME. ")
-    print("Press 2: To CHECK SCORE. ")
-    print("Press 3: To EXIT GAME. ")
-    option = input("Please select one: ")
+    print("Welcome to TicTacToe. Created By Dylan Singleton\n\nStart Game\nCheck Score\nExit\n ")
+    option = raw_input("What would you like to do? ")
 
-    if option == 1:
+    if option.upper() == "start game".upper():
         showBoard()
         player = random.randint(1, 2)
         if player == 1:
             playerOneInput()
         else:
             playerTwoInput()
-    elif option == 2:
+    elif option.upper() == "check score".upper():
         fileName = "Wins.txt"
         file = open(fileName)
         score = file.read()
@@ -27,17 +22,17 @@ def menu():
 
         raw_input("Press ENTER to return to the MENU. ")
         menu()
-    elif option == 3:
-
+    elif option.upper() == "exit".upper():
         choice = raw_input("Are you sure you want to EXIT the game? Yes/No:  ")
-
         if choice.upper() == "yes".upper():
             quit()
         elif choice.upper() == "no".upper():
             menu()
         else:
             print("Please pick a valid option. ")
+            menu()
     else:
+        print("Please pick a valid option. ")
         menu()
 
 def showBoard():
@@ -46,30 +41,40 @@ def showBoard():
     print(interface[7]), (interface[8]), (interface[9])
 
 def playerOneInput():
-    playerOne = input("Player ONE pick an area. You are 'X'. ")
-    playerOne = int(playerOne)
-    while interface[playerOne] != 'X' and interface[playerOne] != 'O':
-        interface[playerOne] = 'X'
-        checkBoard()
-        showBoard()
-        playerTwoInput()
-    else:
-        print("That area has been taken! Please pick a valid area PLAYER ONE")
-        showBoard()
+    playerOne = raw_input("Player one pick an area. You are 'X'. ")
+    try:
+        playerOne = int(playerOne)
+    except ValueError:
+        print("Please pick a valid area.")
         playerOneInput()
+    else:
+        while interface[playerOne] != 'X' and interface[playerOne] != 'O':
+            interface[playerOne] = 'X'
+            checkBoard()
+            showBoard()
+            playerTwoInput()
+        else:
+            print("That area has been taken! Please pick a valid area player one")
+            showBoard()
+            playerOneInput()
 
 def playerTwoInput():
-    playerTwo = input("Player TWO pick an area. You are 'O'. ")
-    playerTwo = int(playerTwo)
-    while interface[playerTwo] != 'X' and interface[playerTwo] != 'O':
-        interface[playerTwo] = 'O'
-        checkBoard()
-        showBoard()
-        playerOneInput()
-    else:
-        print("That area has been taken! Please pick a valid area PLAYER TWO")
-        showBoard()
+    playerTwo = raw_input("Player two pick an area. You are 'O'. ")
+    try:
+        playerTwo = int(playerTwo)
+    except ValueError:
+        print("Please pick a valid area.")
         playerTwoInput()
+    else:
+        while interface[playerTwo] != 'X' and interface[playerTwo] != 'O':
+            interface[playerTwo] = 'O'
+            checkBoard()
+            showBoard()
+            playerOneInput()
+        else:
+            print("That area has been taken! Please pick a valid area player two")
+            showBoard()
+            playerTwoInput()
 
 def checkBoard():
     #Horizontal x
