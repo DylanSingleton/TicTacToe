@@ -10,6 +10,11 @@ Cleaned up the menu screen.
 Added validation rules to the menu choices.
 Fixed an issue where pressing enter or using a string during either players turn would crash the game.
 
+24/04/2017
+Added a total games varaible that is updated via parameters and displayed when you check the score.
+Created onExit() function to fix an issue with the menu.
+Streamlined the code to detect if a player has won or not reducing the amount of code needed.
+
 To-do:
 Reduce the amount of code.
 Support a bot.
