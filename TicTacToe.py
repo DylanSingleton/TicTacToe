@@ -1,7 +1,8 @@
 import random
+xGames = 0
+oGames = 0
 
 interface = range(0,10)
-totalGames = 0
 
 def menu():
     print("Welcome to TicTacToe. Created By Dylan Singleton\n\nStart Game\nCheck Score\nExit\n ")
@@ -15,7 +16,7 @@ def menu():
         else:
             playerTwoInput()
     elif option.upper() == "check score".upper():
-        updateGames(totalGames)
+        print 'Player one has played ',xGames,' and Player two has played ',oGames,' for a total of: ',gamesPlayed(xGames,oGames), 'Games this session.'
         fileName = "Wins.txt"
         file = open(fileName)
         score = file.read()
@@ -77,9 +78,9 @@ def checkBoard():
     #Replaces a,b,c with (1,2,3) ect...
     for a,b,c in winPos:
         #Checks to see is a,b,c = X or Y. If they do execute xWin or oWin. Otherwise check for a draw.
-        if interface[a] and interface[b] and interface[c] == 'X':
+        if interface[a] == 'X'and interface[b] == 'X'and interface[c] == 'X':
             xWin()
-        elif interface[a] and interface[b] and interface[c] == 'O':
+        elif interface[a] == 'O'and interface[b] == 'O'and interface[c] == 'O':
             oWin()
         elif interface[1] != 1 and interface[2] != 2 and interface[3] != 3 and interface[4] != 4 and interface[5] != 5 and interface[6] != 6 and interface[7] != 7 and interface[8] != 8 and interface[9] != 9:
             gameDraw()
@@ -91,6 +92,8 @@ def xWin():
     file = open(fileName, 'a')
     file.writelines("Player ONE has won! \n")
     file.close()
+    global xGames
+    xGames =+ 1
     resetGame()
 
 def oWin():
@@ -100,12 +103,9 @@ def oWin():
     file = open(fileName, 'a')
     file.writelines("Player TWO has won! \n")
     file.close()
-
+    global oGames
+    yGames = + 1
     resetGame()
-
-def updateGames(totalGames):
-    totalGames += 1
-    print "Games Played: ", totalGames
 
 def gameDraw():
     showBoard()
@@ -130,5 +130,8 @@ def onExit():
     else:
         print("Please pick a valid option.")
         onExit()
+
+def gamesPlayed(x,o):
+    return x + o
 #Runs the menu
 menu()
